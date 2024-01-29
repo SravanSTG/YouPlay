@@ -7,6 +7,7 @@ import { MdHomeFilled, MdOutlineFeedback, MdSmartDisplay, MdSubscriptions } from
 import { SiYoutubeshorts } from "react-icons/si";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
@@ -16,23 +17,25 @@ const Sidebar = () => {
   return (
     <div className="col-span-1 px-7">
       <div className="flex flex-col justify-start border-b-[1px] border-gray-300 pb-2">
-        <p className="flex items-center py-2"><MdHomeFilled className="text-xl mr-2" /> Home</p>
-        <p className="flex items-center py-2"><SiYoutubeshorts className="text-xl mr-2" /> Shorts</p>
-        <p className="flex items-center py-2"><MdSubscriptions className="text-xl mr-2" /> Subscriptions</p>
+        <Link to="/">
+          <p className="flex items-center py-2 text-sm md:text-base cursor-pointer"><MdHomeFilled className="text-base md:text-xl mr-2" /> Home</p>
+        </Link>
+        <p className="flex items-center py-2 text-sm md:text-base"><SiYoutubeshorts className="text-base md:text-xl mr-2" /> Shorts</p>
+        <p className="flex items-center py-2 text-sm md:text-base"><MdSubscriptions className="text-base md:text-xl mr-2" /> Subscriptions</p>
       </div>
 
       <div className="flex flex-col justify-start border-b-[1px] border-gray-300 py-2">
         <h3 className="font-bold">You</h3>
-        <p className="flex items-center py-2"><BiSolidUserRectangle className="text-xl mr-2" /> Your channel</p>
-        <p className="flex items-center py-2"><FaHistory className="text-xl mr-2" /> History</p>
-        <p className="flex items-center py-2"><MdSmartDisplay className="text-xl mr-2" /> Your videos</p>
-        <p className="flex items-center py-2"><GoClockFill className="text-xl mr-2" /> Watch later</p>
+        <p className="flex items-center py-2 text-sm md:text-base"><BiSolidUserRectangle className="text-base md:text-xl mr-2" /> Your channel</p>
+        <p className="flex items-center py-2 text-sm md:text-base"><FaHistory className="text-base md:text-xl mr-2" /> History</p>
+        <p className="flex items-center py-2 text-sm md:text-base"><MdSmartDisplay className="text-base md:text-xl mr-2" /> Your videos</p>
+        <p className="flex items-center py-2 text-sm md:text-base"><GoClockFill className="text-base md:text-xl mr-2" /> Watch later</p>
       </div>
 
       <div className="flex flex-col justify-start border-b-[1px] border-gray-300 py-2">
-        <p className="flex items-center py-2"><IoSettingsOutline className="text-xl mr-2" /> Settings</p>
-        <p className="flex items-center py-2"><IoIosHelpCircleOutline className="text-xl mr-2" /> Help</p>
-        <p className="flex items-center py-2"><MdOutlineFeedback className="text-xl mr-2" /> Feedback</p>
+        <p className="flex items-center py-2 text-sm md:text-base"><IoSettingsOutline className="text-base md:text-xl mr-2" /> Settings</p>
+        <p className="flex items-center py-2 text-sm md:text-base"><IoIosHelpCircleOutline className="text-base md:text-xl mr-2" /> Help</p>
+        <p className="flex items-center py-2 text-sm md:text-base"><MdOutlineFeedback className="text-base md:text-xl mr-2" /> Feedback</p>
       </div>
     </div>
   );

@@ -12,28 +12,28 @@ const Header = () => {
   }
 
   return (
-    <nav className="flex items-center justify-between px-7 py-4">
+    <nav className="flex items-center justify-between px-4 md:px-7 py-4">
       <div className="flex items-center">
-        <RxHamburgerMenu className="h-6 w-6" onClick={toggleMenu} />
+        <RxHamburgerMenu className="h-5 w-5 md:h-6 md:w-6" onClick={toggleMenu} />
         <img
           src="./logo.png"
           alt="logo"
-          className="h-7 w-7 ml-6 mr-1"
+          className="h-5 w-5 md:h-7 md:w-7 ml-3 md:ml-6 mr-1"
         />
-        <h1 className="font-bold text-2xl">YouPlay</h1>
+        <h1 className="font-bold text-lg md:text-2xl">YouPlay</h1>
       </div>
-      <div>
+      <div className="flex items-center">
         <input
           type="text"
           placeholder="Search"
-          className="border-solid border-gray-300 border-2 px-3 h-[36px] w-80 rounded-l-full"
+          className="border-solid border-gray-300 border-2 px-3 h-7 md:h-[36px] w-32 md:w-80 rounded-l-full text-xs md:text-base"
         />
-        <button className="px-5 mt-[-1px] h-[36px] bg-gray-200 rounded-r-full">
+        <button className="px-2 md:px-5 h-7 md:h-[36px] bg-gray-200 rounded-r-full">
           <IoSearch />
         </button>
       </div>
       <div>
-        <FaUserCircle className="text-3xl"/>
+        <FaUserCircle className="text-2xl md:text-3xl"/>
       </div>
     </nav>
   );
