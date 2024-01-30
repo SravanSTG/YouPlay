@@ -2,9 +2,17 @@ import { useEffect, useState } from "react";
 import { youtubeVideosUrl } from "../constants";
 import VideoCard from "./VideoCard";
 import { VideoCardType } from "../interfaces";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const MainContainer = () => {
   const [videos, setVideos] = useState<VideoCardType[]>([]);
+
+  const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
+
+  const style = {
+    display: window.innerWidth < 640 && isSidebarOpen ? "none" : "flex", 
+  }
 
   useEffect(() => {
     getVideos();
@@ -17,7 +25,7 @@ const MainContainer = () => {
   };
 
   return (
-    <div className="col-span-11 p-6 flex flex-wrap justify-evenly">
+    <div className="col-span-11 p-6 flex flex-wrap justify-evenly" style={style}>
       {videos.map((video) => (
         <VideoCard key={video.id} videoInfo={video} />
       ))}
