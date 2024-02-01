@@ -1,20 +1,67 @@
+import { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { toggleSidebarMenu } from "../redux/sidebarSlice";
+import { youtubeSearchAPI } from "../constants";
 
 const Header = () => {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [suggestionList, setSuggestionList] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+  const [selectedSuggestion, setSelectedSuggestion] = useState<number>(-1);
+
   const dispatch = useDispatch();
 
   const toggleMenu = () => {
     dispatch(toggleSidebarMenu());
-  }
+  };
+
+  useEffect(() => {
+    // Make an API call after every keypress
+    // But if the difference between multiple keypresses is < 200ms, decline the API call
+    // This is called debouncing
+
+    const timer = setTimeout(() => showSearchSuggestions(), 200);
+
+    return () => {
+      console.log("desc");
+      clearInterval(timer);
+    };
+  }, [searchQuery]);
+
+  const showSearchSuggestions = async () => {
+    const data = await fetch(youtubeSearchAPI + searchQuery);
+    const json = await data.json();
+    setSuggestionList(json[1]);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "ArrowDown") {
+      const currentSuggestion = selectedSuggestion + 1;
+      if (currentSuggestion < suggestionList.length) {
+        setSelectedSuggestion(currentSuggestion);
+      }
+    } else if (e.key === "ArrowUp") {
+      const currentSuggestion = selectedSuggestion - 1;
+      if (currentSuggestion >= 0) {
+        setSelectedSuggestion(currentSuggestion);
+      }
+    } else if (e.key === "Enter") {
+      // To do
+      // Search for the query here
+      console.log(suggestionList[selectedSuggestion]);
+    }
+  };
 
   return (
     <nav className="flex items-center justify-between px-4 md:px-7 py-4">
       <div className="flex items-center">
-        <RxHamburgerMenu className="h-5 w-5 md:h-6 md:w-6" onClick={toggleMenu} />
+        <RxHamburgerMenu
+          className="h-5 w-5 md:h-6 md:w-6"
+          onClick={toggleMenu}
+        />
         <img
           src="./logo.png"
           alt="logo"
@@ -22,18 +69,39 @@ const Header = () => {
         />
         <h1 className="font-bold text-lg md:text-2xl">YouPlay</h1>
       </div>
-      <div className="flex items-center">
-        <input
-          type="text"
-          placeholder="Search"
-          className="border-solid border-gray-300 border-2 px-3 h-7 md:h-[36px] w-32 md:w-80 rounded-l-full text-xs md:text-base"
-        />
-        <button className="px-2 md:px-5 h-7 md:h-[36px] bg-gray-200 rounded-r-full">
-          <IoSearch />
-        </button>
+      <div className="relative focus-within:absolute focus-within:w-[93%] md:focus-within:relative md:focus-within:w-auto">
+        <div className="flex items-center">
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setShowSuggestions(false)}
+            onKeyDown={(e) => handleKeyPress(e)}
+            className="border-solid border-gray-300 border-2 px-3 py-2 h-7 md:h-[36px] w-32 focus:w-full md:w-80 md:focus:w-80 rounded-l-full text-xs md:text-sm"
+          />
+          <button className="px-2 md:px-5 h-7 md:h-[36px] bg-gray-200 rounded-r-full">
+            <IoSearch />
+          </button>
+        </div>
+        {showSuggestions && suggestionList.length > 0 && (
+          <div className="py-2 rounded-lg shadow-xl absolute w-full bg-white z-10 border border-solid border-gray-300">
+            <ul>
+              {suggestionList.map((suggestion, index) => (
+                <li
+                  key={index}
+                  className={`p-2 ${selectedSuggestion === index ? "bg-gray-200" : ""}`}
+                >
+                  {suggestion}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <div>
-        <FaUserCircle className="text-2xl md:text-3xl"/>
+        <FaUserCircle className="text-2xl md:text-3xl" />
       </div>
     </nav>
   );
