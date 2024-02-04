@@ -4,15 +4,19 @@ import { IoSearch } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { toggleSidebarMenu } from "../redux/sidebarSlice";
-import { youtubeSearchAPI } from "../constants";
+import { updateSearchQuery } from "../redux/searchSlice";
+import { autoSuggestionsUrl } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchText, setSearchText] = useState<string>("");
   const [suggestionList, setSuggestionList] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState<number>(-1);
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     dispatch(toggleSidebarMenu());
@@ -22,17 +26,15 @@ const Header = () => {
     // Make an API call after every keypress
     // But if the difference between multiple keypresses is < 200ms, decline the API call
     // This is called debouncing
-
     const timer = setTimeout(() => showSearchSuggestions(), 200);
 
     return () => {
-      console.log("desc");
       clearInterval(timer);
     };
-  }, [searchQuery]);
+  }, [searchText]);
 
   const showSearchSuggestions = async () => {
-    const data = await fetch(youtubeSearchAPI + searchQuery);
+    const data = await fetch(autoSuggestionsUrl + searchText);
     const json = await data.json();
     setSuggestionList(json[1]);
   };
@@ -49,10 +51,19 @@ const Header = () => {
         setSelectedSuggestion(currentSuggestion);
       }
     } else if (e.key === "Enter") {
-      // To do
-      // Search for the query here
-      console.log(suggestionList[selectedSuggestion]);
+      if (selectedSuggestion < 0) {
+        handleSearch(searchText);
+      } else {
+        handleSearch(suggestionList[selectedSuggestion]);
+      }
     }
+  };
+
+  const handleSearch = (searchQuery: string) => {
+    dispatch(updateSearchQuery(searchQuery));
+    navigate("/results?search_query=" + searchQuery);
+    setSearchText("");
+    setSelectedSuggestion(-1);
   };
 
   return (
@@ -74,19 +85,22 @@ const Header = () => {
           <input
             type="text"
             placeholder="Search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setShowSuggestions(false)}
             onKeyDown={(e) => handleKeyPress(e)}
             className="border-solid border-gray-300 border-2 px-3 py-2 h-7 md:h-[36px] w-32 focus:w-full md:w-80 md:focus:w-80 rounded-l-full text-xs md:text-sm"
           />
-          <button className="px-2 md:px-5 h-7 md:h-[36px] bg-gray-200 rounded-r-full">
+          <button
+            className="px-2 md:px-5 h-7 md:h-[36px] bg-gray-200 hover:bg-blue-200 rounded-r-full"
+            onClick={() => handleSearch(searchText)}
+          >
             <IoSearch />
           </button>
         </div>
         {showSuggestions && suggestionList.length > 0 && (
-          <div className="py-2 rounded-lg shadow-xl absolute w-full bg-white z-10 border border-solid border-gray-300">
+          <div className="py-2 mx-1 rounded-lg shadow-xl absolute w-full bg-white z-10 border border-solid border-gray-300">
             <ul>
               {suggestionList.map((suggestion, index) => (
                 <li

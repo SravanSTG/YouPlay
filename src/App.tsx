@@ -1,9 +1,9 @@
 import { Provider } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Header from './components/Header';
 import Home from './components/Home';
 import MainContainer from './components/MainContainer';
 import WatchVideo from './components/WatchVideo';
+import SearchResults from './components/SearchResults';
 import store from './redux/store';
 import './index.css';
 
@@ -19,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "watch",
         element: <WatchVideo />
+      },
+      {
+        path: "results",
+        element: <SearchResults />
       }
     ]
   }
@@ -27,7 +31,6 @@ const router = createBrowserRouter([
 function App() {
   return (
     <Provider store={store}>
-      <Header />
       <RouterProvider router={router} />
     </Provider>
   )

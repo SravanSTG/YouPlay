@@ -15,7 +15,7 @@ const Sidebar = () => {
   if (!isSidebarOpen) return null;
 
   return (
-    <div className="col-span-1 px-7 mt-5 md:m-0">
+    <div className="col-span-1 px-7 md:p-5 md:pt-2 lg:p-7 lg:pt-2 mt-5 md:m-0">
       <div className="flex flex-col justify-start border-b-[1px] border-gray-300 pb-2">
         <Link to="/">
           <p className="flex items-center justify-center md:justify-start py-2 text-sm md:text-base cursor-pointer"><MdHomeFilled className="text-base md:text-xl mr-2" /> Home</p>
