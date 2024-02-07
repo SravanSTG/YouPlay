@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { VideoCardType } from "../interfaces";
 import useDuration from "../utils/useDuration";
+import useUploadDate from "../utils/useUploadDate";
+import { LuDot } from "react-icons/lu";
 
 type VideoCardProps = {
   videoInfo: VideoCardType;
@@ -9,11 +11,12 @@ type VideoCardProps = {
 const VideoCard: React.FC<VideoCardProps> = ({ videoInfo }) => {
   const { id, snippet, statistics, contentDetails } = videoInfo;
 
-  const { title, channelTitle, thumbnails } = snippet;
+  const { title, channelTitle, thumbnails, publishedAt } = snippet;
   const { viewCount } = statistics;
   const { duration } = contentDetails;
 
   const vidDuration = useDuration(duration);
+  const uploadDate = useUploadDate(publishedAt);
 
   return (
     <div className="w-72 mb-8">
@@ -33,7 +36,13 @@ const VideoCard: React.FC<VideoCardProps> = ({ videoInfo }) => {
           <h3 className="text-sm mb-[2px] font-semibold text-gray-500">
             {channelTitle}
           </h3>
-          <p className="text-sm text-gray-500">{viewCount} views</p>
+          <p className="text-sm text-gray-500 flex items-center">
+            {viewCount} views
+            <span className="text-xl mt-0.5">
+              <LuDot />
+            </span>
+            {uploadDate}
+          </p>
         </div>
       </Link>
     </div>

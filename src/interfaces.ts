@@ -7,6 +7,7 @@ export interface VideoCardType {
     title: string;
     channelTitle: string;
     description: string;
+    publishedAt: string;
     thumbnails: {
       medium: {
         url: string;
@@ -28,6 +29,7 @@ export interface SearchVideoCardType {
     title: string;
     channelTitle: string;
     description: string;
+    publishedAt: string;
     thumbnails: {
       medium: {
         url: string;

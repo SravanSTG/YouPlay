@@ -19,7 +19,6 @@ const CommentsList: React.FC<CommentsListPropsType> = ({ videoId }) => {
       `${videoCommentsUrl}${videoId}&key=${import.meta.env.VITE_API_KEY}`
     );
     const json = await data.json();
-    console.log(json.items);
     setCommentsList(json.items);
   };
 

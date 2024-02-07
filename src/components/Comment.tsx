@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CommentType } from "../interfaces";
 import { BiDislike, BiLike } from "react-icons/bi";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import useUploadDate from "../utils/useUploadDate";
 
 type CommentPropsType = {
   comment: CommentType;
@@ -16,11 +17,13 @@ const Comment: React.FC<CommentPropsType> = ({ comment }) => {
     authorDisplayName,
     authorProfileImageUrl,
     likeCount,
+    publishedAt,
     textOriginal,
   } = snippet.topLevelComment.snippet;
 
   const { comments } = replies || {};
-  console.log(comments);
+
+  const commentDate = useUploadDate(publishedAt);
 
   return (
     <div className="flex my-5">
@@ -33,10 +36,15 @@ const Comment: React.FC<CommentPropsType> = ({ comment }) => {
       </div>
       <div className="flex flex-col mx-3 text-sm">
         <div>
-          <h4 className="font-semibold mb-1">{authorDisplayName}</h4>
+          <h4 className="font-semibold mb-1">
+            {authorDisplayName}
+            <span className="text-xs text-gray-500 ml-1">
+              {commentDate}
+            </span>
+          </h4>
           <p className="mb-2">{textOriginal}</p>
           <p className="flex items-center">
-            <BiLike className="mr-1 text-base" /> {likeCount}{" "}
+            <BiLike className="mr-1 text-base" /> {likeCount}
             <BiDislike className="ml-3 text-base" />
           </p>
         </div>
@@ -75,8 +83,8 @@ const Comment: React.FC<CommentPropsType> = ({ comment }) => {
                           </h4>
                           <p className="mb-2">{comment.snippet.textOriginal}</p>
                           <p className="flex items-center">
-                            <BiLike className="mr-1 text-base" />{" "}
-                            {comment.snippet.likeCount}{" "}
+                            <BiLike className="mr-1 text-base" />
+                            {comment.snippet.likeCount}
                             <BiDislike className="ml-3 text-base" />
                           </p>
                         </div>

@@ -8,6 +8,7 @@ import { VideoCardType } from "../interfaces";
 import { GrView } from "react-icons/gr";
 import { BiLike } from "react-icons/bi";
 import CommentsList from "./CommentsList";
+import useUploadDate from "../utils/useUploadDate";
 
 const WatchVideo = () => {
   const [videoDetails, setVideoDetails] = useState<VideoCardType | undefined>();
@@ -15,15 +16,15 @@ const WatchVideo = () => {
 
   const { snippet, statistics } = videoDetails || {};
 
-  const { title, channelTitle, description } = snippet || {};
+  const { title, channelTitle, description, publishedAt } = snippet || {};
   const { viewCount, likeCount } = statistics || {};
 
   const [searchParams] = useSearchParams();
   const videoId = searchParams.get("v");
 
-  const isSidebarOpen = useSelector(
-    (store: RootState) => store.sidebar.isMenuOpen
-  );
+  const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
+
+  const uploadDate = useUploadDate(publishedAt!);
 
   const style = {
     display: window.innerWidth < 640 && isSidebarOpen ? "none" : "flex",
@@ -72,8 +73,9 @@ const WatchVideo = () => {
             {likeCount}
           </p>
         </div>
+        <p className="text-sm font-semibold">{uploadDate}</p>
         <div
-          className="bg-gray-100 p-4 rounded-lg mt-4"
+          className="bg-gray-100 p-4 rounded-lg mt-2"
           onClick={() => setShowDescription(!showDescription)}
         >
           <p
