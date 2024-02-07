@@ -6,6 +6,7 @@ export interface VideoCardType {
   snippet: {
     title: string;
     channelTitle: string;
+    description: string;
     thumbnails: {
       medium: {
         url: string;
@@ -14,6 +15,8 @@ export interface VideoCardType {
   };
   statistics: {
     viewCount: string;
+    likeCount: string;
+    commentCount: string;
   };
 }
 
@@ -30,5 +33,34 @@ export interface SearchVideoCardType {
         url: string;
       };
     };
+  };
+}
+
+export interface CommentType {
+  id: string;
+  snippet: {
+    topLevelComment: {
+      snippet: {
+        authorDisplayName: string;
+        authorProfileImageUrl: string;
+        likeCount: number;
+        publishedAt: string;
+        textOriginal: string;
+      };
+    };
+  };
+  replies: {
+    comments: [
+      {
+        id: string;
+        snippet: {
+          authorDisplayName: string;
+          authorProfileImageUrl: string;
+          likeCount: number;
+          publishedAt: string;
+          textOriginal: string;
+        };
+      }
+    ];
   };
 }
