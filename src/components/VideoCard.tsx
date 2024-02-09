@@ -25,7 +25,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ videoInfo }) => {
           <img
             src={thumbnails.medium.url}
             alt="video-thumb"
-            className="rounded-lg"
+            className="rounded-lg hover:rounded-none"
           />
           <p className="absolute bottom-1 right-1 text-xs text-white font-semibold bg-black py-1 px-[5px] rounded-md">
             {vidDuration}

@@ -5,12 +5,14 @@ import MainContainer from './components/MainContainer';
 import WatchVideo from './components/WatchVideo';
 import SearchResults from './components/SearchResults';
 import store from './redux/store';
+import Error from './layout/Error';
 import './index.css';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",

@@ -25,7 +25,7 @@ const SearchResultCard: React.FC<SearchResultCardProps> = ({ videoInfo }) => {
           <img
             src={thumbnails.medium.url}
             alt="video-thumb"
-            className="rounded-lg"
+            className="rounded-lg hover:rounded-none"
           />
         </div>
         <div className={`flex flex-col px-1 md:px-0 md:ml-4 max-w-80 ${isSidebarOpen ? "md:w-80" : "md:w-[400px]"} lg:w-full lg:max-w-lg xl:max-w-2xl 2xl:max-w-3xl`}>

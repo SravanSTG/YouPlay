@@ -4,6 +4,7 @@ import VideoCard from "./VideoCard";
 import { VideoCardType } from "../interfaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import Shimmer from "../layout/Shimmer";
 
 const MainContainer = () => {
   const [videos, setVideos] = useState<VideoCardType[]>([]);
@@ -11,8 +12,8 @@ const MainContainer = () => {
   const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
 
   const style = {
-    display: window.innerWidth < 640 && isSidebarOpen ? "none" : "flex", 
-  }
+    display: window.innerWidth < 640 && isSidebarOpen ? "none" : "flex",
+  };
 
   useEffect(() => {
     getVideos();
@@ -24,8 +25,13 @@ const MainContainer = () => {
     setVideos(json.items);
   };
 
-  return (
-    <div className="col-span-11 p-6 flex flex-wrap justify-evenly" style={style}>
+  return videos.length === 0 ? (
+    <Shimmer />
+  ) : (
+    <div
+      className="col-span-11 p-6 flex flex-wrap justify-evenly"
+      style={style}
+    >
       {videos.map((video) => (
         <VideoCard key={video.id} videoInfo={video} />
       ))}
