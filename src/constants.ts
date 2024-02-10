@@ -9,3 +9,6 @@ export const videoStatsUrl =
 
 export const videoCommentsUrl =
   "https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=100&order=relevance&videoId=";
+
+export const channelInfoUrl =
+  "https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=";

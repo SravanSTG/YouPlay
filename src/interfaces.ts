@@ -5,6 +5,8 @@ export interface VideoCardType {
   };
   snippet: {
     title: string;
+    categoryId: string;
+    channelId: string;
     channelTitle: string;
     description: string;
     publishedAt: string;
@@ -64,5 +66,22 @@ export interface CommentType {
         };
       }
     ];
+  };
+}
+
+export interface ChannelType {
+  id: string;
+  snippet: {
+    title: string;
+    description: string;
+    thumbnails: {
+      default: {
+        url: string;
+      };
+    };
+  };
+  statistics: {
+    subscriberCount: string;
+    videoCount: string;
   };
 }

@@ -7,6 +7,8 @@ import { videoStatsUrl } from "../constants";
 import { VideoCardType } from "../interfaces";
 import { GrView } from "react-icons/gr";
 import { BiLike } from "react-icons/bi";
+import { MdPlaylistAdd } from "react-icons/md";
+import Channel from "./Channel";
 import CommentsList from "./CommentsList";
 import useUploadDate from "../utils/useUploadDate";
 
@@ -16,7 +18,7 @@ const WatchVideo = () => {
 
   const { snippet, statistics } = videoDetails || {};
 
-  const { title, channelTitle, description, publishedAt } = snippet || {};
+  const { title, channelId, description, publishedAt } = snippet || {};
   const { viewCount, likeCount } = statistics || {};
 
   const [searchParams] = useSearchParams();
@@ -61,17 +63,20 @@ const WatchVideo = () => {
       </div>
       <div className="my-3 xl:w-[900px]">
         <h2 className="font-bold text-xl">{title}</h2>
-        <div className="flex items-center my-3">
-          <h3 className="text-sm mb-[2px] font-semibold text-gray-500">
-            {channelTitle}
-          </h3>
-          <p className="ml-auto flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm">
-            <GrView className="mr-2 text-xl" /> {viewCount}
-          </p>
-          <p className="ml-5 flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm">
-            <BiLike className="mr-2 text-xl" />
-            {likeCount}
-          </p>
+        <div className="flex flex-col md:flex-row items-start md:items-center my-3">
+          {channelId && <Channel channelId={channelId} />}
+          <div className="flex mt-3 md:mt-0 md:ml-auto">
+            <p className="flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm">
+              <GrView className="mr-2 text-xl" /> {viewCount}
+            </p>
+            <p className="ml-5 flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm">
+              <BiLike className="mr-2 text-xl" />
+              {likeCount}
+            </p>
+            <p className="ml-5 flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm">
+              <MdPlaylistAdd className="mr-2 text-xl" /> Save
+            </p>
+          </div>
         </div>
         <p className="text-sm font-semibold">{uploadDate}</p>
         <div
