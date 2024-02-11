@@ -78,6 +78,9 @@ export interface ChannelType {
       default: {
         url: string;
       };
+      medium: {
+        url: string;
+      }
     };
   };
   statistics: {

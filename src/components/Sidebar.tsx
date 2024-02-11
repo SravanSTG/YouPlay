@@ -1,10 +1,10 @@
-import { BiSolidUserRectangle } from "react-icons/bi";
-import { FaHistory } from "react-icons/fa";
-import { GoClockFill } from "react-icons/go";
+import { GoHome, GoHistory, GoClock } from "react-icons/go";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
-import { MdHomeFilled, MdOutlineFeedback, MdSmartDisplay, MdSubscriptions } from "react-icons/md";
-import { SiYoutubeshorts } from "react-icons/si";
+import { MdOutlineFeedback, MdOutlineSmartDisplay, MdOutlineSubscriptions } from "react-icons/md";
+import { TbUserSquare } from "react-icons/tb";
+import { BiLike } from "react-icons/bi";
+// import { SiYoutubeshorts } from "react-icons/si";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { Link } from "react-router-dom";
@@ -21,30 +21,36 @@ const Sidebar = () => {
       <div className="flex flex-col justify-start border-b-[1px] border-gray-300 pb-2">
         <Link to="/">
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-            <MdHomeFilled className="text-base md:text-xl mr-2" /> Home
+            <GoHome className="text-base md:text-xl mr-2" /> Home
           </p>
         </Link>
-        <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+        {/* <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
           <SiYoutubeshorts className="text-base md:text-xl mr-2" /> Shorts
-        </p>
-        <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-          <MdSubscriptions className="text-base md:text-xl mr-2" /> Subscriptions
-        </p>
+        </p> */}
+        <Link to="/subscriptions">
+          <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+            <MdOutlineSubscriptions className="text-base md:text-xl mr-2" />Subscriptions
+          </p>
+        </Link>
       </div>
 
       <div className="flex flex-col justify-start border-b-[1px] border-gray-300 py-2">
         <h3 className="text-center md:text-left font-bold md:px-2">You</h3>
         <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-          <BiSolidUserRectangle className="text-base md:text-xl mr-2" /> Your channel
+          <TbUserSquare className="text-base md:text-xl mr-2" /> Your channel
         </p>
         <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-          <FaHistory className="text-base md:text-xl mr-2" /> History
+          <GoHistory className="text-base md:text-xl mr-2" /> History
         </p>
         <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-          <MdSmartDisplay className="text-base md:text-xl mr-2" /> Your videos
+          <MdOutlineSmartDisplay className="text-base md:text-xl mr-2" /> Your
+          videos
         </p>
         <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-          <GoClockFill className="text-base md:text-xl mr-2" /> Watch later
+          <GoClock className="text-base md:text-xl mr-2" /> Watch later
+        </p>
+        <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+          <BiLike className="text-base md:text-xl mr-2" /> Liked Videos
         </p>
       </div>
 

@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { channelInfoUrl } from "../constants";
 import { ChannelType } from "../interfaces";
+import { useDispatch, useSelector } from "react-redux";
+import { addChannel, removeChannel } from "../redux/subscribeSlice";
+import { RootState } from "../redux/store";
 
 type ChannelPropsType = {
   channelId: string;
@@ -8,15 +11,33 @@ type ChannelPropsType = {
 
 const Channel: React.FC<ChannelPropsType> = ({ channelId }) => {
   const [channelDetails, setChannelDetails] = useState<ChannelType | undefined>();
-
-  const { snippet, statistics } = channelDetails || {};
-
+  const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
+  
+  const subscribedChannels = useSelector((store: RootState) => store.subscribe.subscribedChannels);
+  
+  const { id, snippet, statistics } = channelDetails || {};
+  
   const { title, thumbnails } = snippet || {};
   const { subscriberCount } = statistics || {};
+  
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getChannelDetails();
   }, []);
+  
+  useEffect(() => {
+    const isChannelExistsInSubs = subscribedChannels.some((channel) => channel.id === id);
+    setIsSubscribed(isChannelExistsInSubs);
+  }, [subscribedChannels, id]);
+
+  useEffect(() => {
+    if (isSubscribed && channelDetails) {
+      dispatch(addChannel(channelDetails));
+    } else if (!isSubscribed && id) {
+      dispatch(removeChannel(id));
+    }
+  }, [isSubscribed]);
 
   const getChannelDetails = async () => {
     const data = await fetch(
@@ -41,10 +62,16 @@ const Channel: React.FC<ChannelPropsType> = ({ channelId }) => {
           {subscriberCount} subscribers
         </p>
       </div>
-      <div>
-        <button className="bg-blue-600 rounded-full px-3 py-2 text-white">
-          Subscribe
-        </button>
+      <div onClick={() => setIsSubscribed(!isSubscribed)}>
+        {!isSubscribed ? (
+          <button className="bg-blue-600 rounded-full px-3 py-2 text-white">
+            Subscribe
+          </button>
+        ) : (
+          <button className="bg-gray-200 rounded-full px-3 py-2">
+            Subscribed
+          </button>
+        )}
       </div>
     </div>
   );

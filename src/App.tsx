@@ -4,6 +4,7 @@ import Home from './components/Home';
 import MainContainer from './components/MainContainer';
 import WatchVideo from './components/WatchVideo';
 import SearchResults from './components/SearchResults';
+import Subscriptions from './components/Subscriptions';
 import store from './redux/store';
 import Error from './layout/Error';
 import './index.css';
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "results",
         element: <SearchResults />
+      },
+      {
+        path: "subscriptions",
+        element: <Subscriptions />
       }
     ]
   }

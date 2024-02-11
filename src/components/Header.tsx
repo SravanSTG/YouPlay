@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { toggleSidebarMenu } from "../redux/sidebarSlice";
 import { updateSearchQuery } from "../redux/searchSlice";
 import { autoSuggestionsUrl } from "../constants";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [searchText, setSearchText] = useState<string>("");
@@ -73,12 +73,14 @@ const Header = () => {
           className="h-5 w-5 md:h-6 md:w-6"
           onClick={toggleMenu}
         />
-        <img
-          src="./logo.png"
-          alt="logo"
-          className="h-5 w-5 md:h-7 md:w-7 ml-3 md:ml-6 mr-1"
-        />
-        <h1 className="font-bold text-lg md:text-2xl">YouPlay</h1>
+        <Link to="/" className="flex items-center">
+          <img
+            src="./logo.png"
+            alt="logo"
+            className="h-5 w-5 md:h-7 md:w-7 ml-3 md:ml-6 mr-1"
+          />
+          <h1 className="font-bold text-lg md:text-2xl">YouPlay</h1>
+        </Link>
       </div>
       <div className="relative focus-within:absolute focus-within:w-[93%] md:focus-within:relative md:focus-within:w-auto">
         <div className="flex items-center">

@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import sidebarSlice from "./sidebarSlice";
 import searchSlice from "./searchSlice";
+import subscribeSlice from "./subscribeSlice";
 
 const store = configureStore({
   reducer: {
     sidebar: sidebarSlice,
     search: searchSlice,
+    subscribe: subscribeSlice,
   },
 });
 
