@@ -1,4 +1,5 @@
 import { ChannelType } from "../interfaces";
+import useRoundNum from "../utils/useRoundNum";
 
 type ChannelCardPropsType = {
   channel: ChannelType;
@@ -21,7 +22,7 @@ const ChannelCard: React.FC<ChannelCardPropsType> = ({ channel }) => {
       </div>
       <div className="mt-2">
         <h2 className="font-semibold text-base md:text-lg">{title}</h2>
-        <p className="text-gray-500 text-sm">{subscriberCount} subscribers</p>
+        <p className="text-gray-500 text-sm">{useRoundNum(subscriberCount)} subscribers</p>
       </div>
     </div>
   );

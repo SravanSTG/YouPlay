@@ -11,6 +11,7 @@ import { MdPlaylistAdd } from "react-icons/md";
 import Channel from "./Channel";
 import CommentsList from "./CommentsList";
 import useUploadDate from "../utils/useUploadDate";
+import useRoundNum from "../utils/useRoundNum";
 
 const WatchVideo = () => {
   const [videoDetails, setVideoDetails] = useState<VideoCardType | undefined>();
@@ -67,11 +68,12 @@ const WatchVideo = () => {
           {channelId && <Channel channelId={channelId} />}
           <div className="flex mt-3 md:mt-0 md:ml-auto">
             <p className="flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm">
-              <GrView className="mr-2 text-xl" /> {viewCount}
+              <GrView className="mr-2 text-xl" /> 
+              {useRoundNum(viewCount || '')}
             </p>
             <p className="ml-5 flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm">
               <BiLike className="mr-2 text-xl" />
-              {likeCount}
+              {useRoundNum(likeCount || '')}
             </p>
             <p className="ml-5 flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm">
               <MdPlaylistAdd className="mr-2 text-xl" /> Save

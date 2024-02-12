@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { VideoCardType } from "../interfaces";
 import useDuration from "../utils/useDuration";
 import useUploadDate from "../utils/useUploadDate";
+import useRoundNum from "../utils/useRoundNum";
 import { LuDot } from "react-icons/lu";
 
 type VideoCardProps = {
@@ -37,7 +38,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ videoInfo }) => {
             {channelTitle}
           </h3>
           <p className="text-sm text-gray-500 flex items-center">
-            {viewCount} views
+            {useRoundNum(viewCount)} views
             <span className="text-xl mt-0.5">
               <LuDot />
             </span>

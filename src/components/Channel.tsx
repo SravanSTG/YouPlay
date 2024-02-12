@@ -4,6 +4,7 @@ import { ChannelType } from "../interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { addChannel, removeChannel } from "../redux/subscribeSlice";
 import { RootState } from "../redux/store";
+import useRoundNum from "../utils/useRoundNum";
 
 type ChannelPropsType = {
   channelId: string;
@@ -59,7 +60,7 @@ const Channel: React.FC<ChannelPropsType> = ({ channelId }) => {
       <div className="mr-6">
         <h3 className="font-bold">{title}</h3>
         <p className="text-xs font-semibold text-gray-500">
-          {subscriberCount} subscribers
+          {useRoundNum(subscriberCount || '')} subscribers
         </p>
       </div>
       <div onClick={() => setIsSubscribed(!isSubscribed)}>

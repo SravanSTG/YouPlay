@@ -4,6 +4,9 @@ export const youtubeVideosUrl =
 export const autoSuggestionsUrl =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
+export const searchVideosUrl = 
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=";
+
 export const videoStatsUrl =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=";
 

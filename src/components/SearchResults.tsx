@@ -3,6 +3,7 @@ import { RootState } from "../redux/store";
 import { useEffect, useState } from "react";
 import SearchResultCard from "./SearchResultCard";
 import { SearchVideoCardType } from "../interfaces";
+import { searchVideosUrl } from "../constants";
 
 const SearchResults = () => {
   const [searchResultsList, setSearchResultsList] = useState<SearchVideoCardType[]>([]);
@@ -21,7 +22,7 @@ const SearchResults = () => {
 
   const getSearchedVideosList = async () => {
     const data = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${searchQuery}&type=video&key=${
+      `${searchVideosUrl}${searchQuery}&type=video&key=${
         import.meta.env.VITE_API_KEY
       }`
     );
