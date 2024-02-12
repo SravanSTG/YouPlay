@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { GoHome, GoHistory, GoClock } from "react-icons/go";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -10,26 +11,36 @@ import { RootState } from "../redux/store";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const isSidebarOpen = useSelector(
-    (store: RootState) => store.sidebar.isMenuOpen
-  );
+  const [selectedTab, setSelectedTab] = useState<string>("Home");
+
+  const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
 
   if (!isSidebarOpen) return null;
 
   return (
     <div className="col-span-1 px-7 md:p-5 md:pt-2 lg:p-7 lg:pt-2 lg:px-5 mt-5 md:m-0">
       <div className="flex flex-col justify-start border-b-[1px] border-gray-300 pb-2">
-        <Link to="/">
+        <Link
+          to="/"
+          onClick={() => setSelectedTab("Home")}
+          className={selectedTab === "Home" ? "bg-gray-200 rounded-lg" : ""}
+        >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <GoHome className="text-base md:text-xl mr-2" /> Home
           </p>
         </Link>
-        {/* <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-          <SiYoutubeshorts className="text-base md:text-xl mr-2" /> Shorts
-        </p> */}
-        <Link to="/subscriptions">
+        {/* <Link to="">
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-            <MdOutlineSubscriptions className="text-base md:text-xl mr-2" />Subscriptions
+            <SiYoutubeshorts className="text-base md:text-xl mr-2" /> Shorts
+          </p>
+        </Link> */}
+        <Link
+          to="/subscriptions"
+          onClick={() => setSelectedTab("Subscriptions")}
+          className={selectedTab === "Subscriptions" ? "bg-gray-200 rounded-lg" : ""}
+        >
+          <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+            <MdOutlineSubscriptions className="text-base md:text-xl mr-2" /> Subscriptions
           </p>
         </Link>
       </div>
@@ -43,15 +54,26 @@ const Sidebar = () => {
           <GoHistory className="text-base md:text-xl mr-2" /> History
         </p>
         <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-          <MdOutlineSmartDisplay className="text-base md:text-xl mr-2" /> Your
-          videos
+          <MdOutlineSmartDisplay className="text-base md:text-xl mr-2" /> Your videos
         </p>
-        <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-          <GoClock className="text-base md:text-xl mr-2" /> Watch later
-        </p>
-        <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-          <BiLike className="text-base md:text-xl mr-2" /> Liked Videos
-        </p>
+        <Link
+          to=""
+          onClick={() => setSelectedTab("Watch later")}
+          className={selectedTab === "Watch later" ? "bg-gray-200 rounded-lg" : ""}
+        >
+          <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+            <GoClock className="text-base md:text-xl mr-2" /> Watch later
+          </p>
+        </Link>
+        <Link
+          to=""
+          onClick={() => setSelectedTab("Liked videos")}
+          className={selectedTab === "Liked videos" ? "bg-gray-200 rounded-lg" : ""}
+        >
+          <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+            <BiLike className="text-base md:text-xl mr-2" /> Liked videos
+          </p>
+        </Link>
       </div>
 
       <div className="flex flex-col justify-start border-b-[1px] border-gray-300 py-2">
