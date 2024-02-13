@@ -57,7 +57,7 @@ const Sidebar = () => {
           <MdOutlineSmartDisplay className="text-base md:text-xl mr-2" /> Your videos
         </p>
         <Link
-          to=""
+          to="/watchlater"
           onClick={() => setSelectedTab("Watch later")}
           className={selectedTab === "Watch later" ? "bg-gray-200 rounded-lg" : ""}
         >

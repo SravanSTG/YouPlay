@@ -7,17 +7,19 @@ import { videoStatsUrl } from "../constants";
 import { VideoCardType } from "../interfaces";
 import { GrView } from "react-icons/gr";
 import { BiLike } from "react-icons/bi";
-import { MdPlaylistAdd } from "react-icons/md";
+import { MdPlaylistAdd, MdPlaylistAddCheck } from "react-icons/md";
 import Channel from "./Channel";
 import CommentsList from "./CommentsList";
 import useUploadDate from "../utils/useUploadDate";
 import useRoundNum from "../utils/useRoundNum";
+import { addToWatchLater, removeFromWatchLater } from "../redux/watchLaterSlice";
 
 const WatchVideo = () => {
   const [videoDetails, setVideoDetails] = useState<VideoCardType | undefined>();
   const [showDescription, setShowDescription] = useState<boolean>(false);
+  const [isSaved, setIsSaved] = useState<boolean>(false);
 
-  const { snippet, statistics } = videoDetails || {};
+  const { id, snippet, statistics } = videoDetails || {};
 
   const { title, channelId, description, publishedAt } = snippet || {};
   const { viewCount, likeCount } = statistics || {};
@@ -26,6 +28,7 @@ const WatchVideo = () => {
   const videoId = searchParams.get("v");
 
   const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
+  const watchLaterVideos = useSelector((store: RootState) => store.watchLater.watchLaterVideos);
 
   const uploadDate = useUploadDate(publishedAt!);
 
@@ -39,6 +42,19 @@ const WatchVideo = () => {
     dispatch(closeSidebarMenu());
     getVideoStats();
   }, []);
+
+  useEffect(() => {
+    const isVideoInWL = watchLaterVideos.some((video) => video.id === id);
+    setIsSaved(isVideoInWL);
+  }, [watchLaterVideos, id]);
+
+  useEffect(() => {
+    if (isSaved && videoDetails) {
+      dispatch(addToWatchLater(videoDetails));
+    } else if (!isSaved && id) {
+      dispatch(removeFromWatchLater(id));
+    }
+  }, [isSaved]);
 
   const getVideoStats = async () => {
     const data = await fetch(
@@ -71,12 +87,25 @@ const WatchVideo = () => {
               <GrView className="mr-2 text-xl" /> 
               {useRoundNum(viewCount || '')}
             </p>
-            <p className="ml-5 flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm">
+            <p className="ml-5 flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm cursor-pointer">
               <BiLike className="mr-2 text-xl" />
               {useRoundNum(likeCount || '')}
             </p>
-            <p className="ml-5 flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm">
-              <MdPlaylistAdd className="mr-2 text-xl" /> Save
+            <p
+              className={`ml-5 flex items-center px-3 py-1 rounded-full text-sm cursor-pointer ${
+                isSaved ? "bg-gray-200" : "bg-gray-100"
+              }`}
+              onClick={() => setIsSaved(!isSaved)}
+            >
+              {isSaved ? (
+                <>
+                  <MdPlaylistAddCheck className="mr-2 text-xl" /> Saved
+                </>
+              ) : (
+                <>
+                  <MdPlaylistAdd className="mr-2 text-xl" /> Save
+                </>
+              )}
             </p>
           </div>
         </div>

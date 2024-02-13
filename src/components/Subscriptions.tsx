@@ -23,7 +23,7 @@ const Subscriptions = () => {
           ))}
         </div>
       ) : (
-        <div className="m-10">
+        <div className="my-10">
           <p>
             You don't have any channels subscribed. Subscribe to some channels to see them here.
           </p>
