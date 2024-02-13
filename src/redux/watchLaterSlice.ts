@@ -16,9 +16,7 @@ const watchLaterSlice = createSlice({
       }
     },
     removeFromWatchLater: (state, action: PayloadAction<string>) => {
-      state.watchLaterVideos = state.watchLaterVideos.filter(
-        (channel) => channel.id !== action.payload
-      );
+      state.watchLaterVideos = state.watchLaterVideos.filter((video) => video.id !== action.payload);
     },
   },
 });

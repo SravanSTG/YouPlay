@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-#wl-video-card > #wl-video-card-close-btn {
+#list-video-card > #list-video-card-close-btn {
     visibility: hidden;
 }
 
-#wl-video-card:hover > #wl-video-card-close-btn {
+#list-video-card:hover > #list-video-card-close-btn {
     visibility: visible;
 }

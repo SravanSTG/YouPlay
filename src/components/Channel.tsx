@@ -54,18 +54,18 @@ const Channel: React.FC<ChannelPropsType> = ({ channelId }) => {
         <img
           src={thumbnails?.default?.url}
           alt="channel-logo"
-          className="h-10 w-10 rounded-full mr-3"
+          className="h-10 w-10 rounded-full mr-2 md:mr-3"
         />
       </div>
       <div className="mr-6">
-        <h3 className="font-bold">{title}</h3>
+        <h3 className="font-bold text-sm md:text-base">{title}</h3>
         <p className="text-xs font-semibold text-gray-500">
           {useRoundNum(subscriberCount || '')} subscribers
         </p>
       </div>
       <div onClick={() => setIsSubscribed(!isSubscribed)}>
         {!isSubscribed ? (
-          <button className="bg-blue-600 rounded-full px-3 py-2 text-white hover:bg-gray-200 hover:text-black">
+          <button className="bg-blue-600 rounded-full px-3 py-2 text-sm md:text-base text-white hover:bg-gray-200 hover:text-black">
             Subscribe
           </button>
         ) : (

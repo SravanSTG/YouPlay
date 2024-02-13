@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { VideoCardType } from "../interfaces";
 import useDuration from "../utils/useDuration";
@@ -6,6 +6,7 @@ import useUploadDate from "../utils/useUploadDate";
 import useRoundNum from "../utils/useRoundNum";
 import { LuDot } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
+import { removeFromLikedVideos } from "../redux/likedVideosSlice";
 import { removeFromWatchLater } from "../redux/watchLaterSlice";
 
 type ListVideoCardPropsType = {
@@ -24,18 +25,28 @@ const ListVideoCard: React.FC<ListVideoCardPropsType> = ({ videoInfo }) => {
 
   const dispatch = useDispatch();
 
+  const location = useLocation();
+
+  const handleRemoveButtonClick = () => {
+    if (location.pathname === "/liked") {
+      dispatch(removeFromLikedVideos(id));
+    } else if (location.pathname === "/watchlater") {
+      dispatch(removeFromWatchLater(id));
+    }
+  }
+
   return (
     <div className="my-4">
       <Link
         to={"/watch?v=" + id}
-        id="wl-video-card"
+        id="list-video-card"
         className="p-2 flex cursor-pointer hover:bg-gray-100 rounded-lg"
       >
         <div className="relative flex-none w-40 h-[90px]">
           <img
             src={thumbnails.medium.url}
             alt="video-thumb"
-            className="rounded-lg hover:rounded-none"
+            className="rounded-lg"
           />
           <p className="absolute bottom-1 right-1 text-xs text-white font-semibold bg-black py-1 px-[5px] rounded-md">
             {vidDuration}
@@ -54,9 +65,9 @@ const ListVideoCard: React.FC<ListVideoCardPropsType> = ({ videoInfo }) => {
             {uploadDate}
           </p>
         </div>
-        <div onClick={(e) => e.preventDefault()} id="wl-video-card-close-btn">
+        <div onClick={(e) => e.preventDefault()} id="list-video-card-close-btn">
           <p className="text-xs md:text-base">
-            <IoClose onClick={() => dispatch(removeFromWatchLater(id))} />
+            <IoClose onClick={() => handleRemoveButtonClick()} />
           </p>
         </div>
       </Link>

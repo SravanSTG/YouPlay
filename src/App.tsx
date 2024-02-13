@@ -9,6 +9,7 @@ import WatchLater from './components/WatchLater';
 import store from './redux/store';
 import Error from './layout/Error';
 import './index.css';
+import LikedVideos from './components/LikedVideos';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "watchlater",
         element: <WatchLater />
+      },
+      {
+        path: "liked",
+        element: <LikedVideos />
       }
     ]
   }

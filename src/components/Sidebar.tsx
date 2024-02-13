@@ -72,9 +72,9 @@ const Sidebar = () => {
           </p>
         </Link>
         <Link
-          to=""
-          onClick={() => setSelectedTab("Liked videos")}
-          className={selectedTab === "Liked videos" ? "bg-gray-200 rounded-lg" : ""}
+          to="/liked"
+          onClick={() => setSelectedTab("/liked")}
+          className={selectedTab === "/liked" ? "bg-gray-200 rounded-lg" : ""}
         >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <BiLike className="text-base md:text-xl mr-2" /> Liked videos

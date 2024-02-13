@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { closeSidebarMenu } from "../redux/sidebarSlice";
 import { RootState } from "../redux/store";
+import { closeSidebarMenu } from "../redux/sidebarSlice";
+import { addToWatchLater, removeFromWatchLater } from "../redux/watchLaterSlice";
+import { addToLikedVideos, removeFromLikedVideos } from "../redux/likedVideosSlice";
 import { videoStatsUrl } from "../constants";
 import { VideoCardType } from "../interfaces";
 import { GrView } from "react-icons/gr";
-import { BiLike } from "react-icons/bi";
+import { BiLike, BiSolidLike } from "react-icons/bi";
 import { MdPlaylistAdd, MdPlaylistAddCheck } from "react-icons/md";
 import Channel from "./Channel";
 import CommentsList from "./CommentsList";
 import useUploadDate from "../utils/useUploadDate";
 import useRoundNum from "../utils/useRoundNum";
-import { addToWatchLater, removeFromWatchLater } from "../redux/watchLaterSlice";
 
 const WatchVideo = () => {
   const [videoDetails, setVideoDetails] = useState<VideoCardType | undefined>();
   const [showDescription, setShowDescription] = useState<boolean>(false);
   const [isSaved, setIsSaved] = useState<boolean>(false);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
 
   const { id, snippet, statistics } = videoDetails || {};
 
@@ -29,6 +31,7 @@ const WatchVideo = () => {
 
   const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
   const watchLaterVideos = useSelector((store: RootState) => store.watchLater.watchLaterVideos);
+  const likedVideos = useSelector((store: RootState) => store.likedVideos.likedVideos);
 
   const uploadDate = useUploadDate(publishedAt!);
 
@@ -43,11 +46,28 @@ const WatchVideo = () => {
     getVideoStats();
   }, []);
 
+  // Check if video is in likedVideosList on initial render and subsequent renders
+  useEffect(() => {
+    const isVideoInLiked = likedVideos.some((video) => video.id === id);
+    setIsLiked(isVideoInLiked);
+  }, [likedVideos, id]);
+
+  // Update likedVideosList on like button click
+  useEffect(() => {
+    if (isLiked && videoDetails) {
+      dispatch(addToLikedVideos(videoDetails));
+    } else if (!isLiked && id) {
+      dispatch(removeFromLikedVideos(id));
+    }
+  }, [isLiked]);
+
+  // Check if video is in watchLaterVideos on initial render and subsequent renders
   useEffect(() => {
     const isVideoInWL = watchLaterVideos.some((video) => video.id === id);
     setIsSaved(isVideoInWL);
   }, [watchLaterVideos, id]);
 
+  // Update watchLaterVideos on save button click
   useEffect(() => {
     if (isSaved && videoDetails) {
       dispatch(addToWatchLater(videoDetails));
@@ -67,7 +87,7 @@ const WatchVideo = () => {
 
   return (
     <div
-      className="col-span-11 px-8 lg:px-16 xl:px-20 py-5 flex flex-col w-full sm:w-full md:w-full"
+      className="col-span-11 px-5 md:px-8 lg:px-16 xl:px-20 py-5 flex flex-col w-full sm:w-full md:w-full"
       style={style}
     >
       <div className="w-full xl:w-[900px]">
@@ -84,12 +104,21 @@ const WatchVideo = () => {
           {channelId && <Channel channelId={channelId} />}
           <div className="flex mt-3 md:mt-0 md:ml-auto">
             <p className="flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm">
-              <GrView className="mr-2 text-xl" /> 
-              {useRoundNum(viewCount || '')}
+              <GrView className="mr-2 text-xl" />
+              {useRoundNum(viewCount || "")}
             </p>
-            <p className="ml-5 flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-gray-200 cursor-pointer">
-              <BiLike className="mr-2 text-xl" />
-              {useRoundNum(likeCount || '')}
+            <p
+              className={`ml-5 flex items-center px-3 py-1 rounded-full text-sm hover:bg-gray-200 cursor-pointer ${
+                isLiked ? "bg-gray-200" : "bg-gray-100"
+              }`}
+              onClick={() => setIsLiked(!isLiked)}
+            >
+              {isLiked ? (
+                <BiSolidLike className="mr-2 text-xl" />
+              ) : (
+                <BiLike className="mr-2 text-xl" />
+              )}
+              {useRoundNum(likeCount || "")}
             </p>
             <p
               className={`ml-5 flex items-center px-3 py-1 rounded-full text-sm hover:bg-gray-200 cursor-pointer ${
@@ -111,7 +140,7 @@ const WatchVideo = () => {
         </div>
         <p className="text-sm font-semibold">{uploadDate}</p>
         <div
-          className="bg-gray-100 p-4 rounded-lg mt-2"
+          className="bg-gray-100 p-4 rounded-lg mt-2 cursor-pointer"
           onClick={() => setShowDescription(!showDescription)}
         >
           <p
