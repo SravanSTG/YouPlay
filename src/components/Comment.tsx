@@ -55,11 +55,11 @@ const Comment: React.FC<CommentPropsType> = ({ comment }) => {
               onClick={() => setShowReplies(!showReplies)}
             >
               {showReplies ? (
-                <div className="flex items-center">
+                <div className="flex items-center cursor-pointer">
                   <IoMdArrowDropup className="mr-1" /> Hide replies
                 </div>
               ) : (
-                <div className="flex items-center">
+                <div className="flex items-center cursor-pointer">
                   <IoMdArrowDropdown className="mr-1" /> Show replies
                 </div>
               )}

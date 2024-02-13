@@ -65,7 +65,7 @@ const Channel: React.FC<ChannelPropsType> = ({ channelId }) => {
       </div>
       <div onClick={() => setIsSubscribed(!isSubscribed)}>
         {!isSubscribed ? (
-          <button className="bg-blue-600 rounded-full px-3 py-2 text-white">
+          <button className="bg-blue-600 rounded-full px-3 py-2 text-white hover:bg-gray-200 hover:text-black">
             Subscribe
           </button>
         ) : (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GoHome, GoHistory, GoClock } from "react-icons/go";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -8,12 +8,18 @@ import { BiLike } from "react-icons/bi";
 // import { SiYoutubeshorts } from "react-icons/si";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
-  const [selectedTab, setSelectedTab] = useState<string>("Home");
+  const [selectedTab, setSelectedTab] = useState<string>(window.location.pathname);
 
   const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setSelectedTab(location.pathname);
+  }, [location.pathname]);
 
   if (!isSidebarOpen) return null;
 
@@ -22,8 +28,8 @@ const Sidebar = () => {
       <div className="flex flex-col justify-start border-b-[1px] border-gray-300 pb-2">
         <Link
           to="/"
-          onClick={() => setSelectedTab("Home")}
-          className={selectedTab === "Home" ? "bg-gray-200 rounded-lg" : ""}
+          onClick={() => setSelectedTab("/")}
+          className={selectedTab === "/" ? "bg-gray-200 rounded-lg" : ""}
         >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <GoHome className="text-base md:text-xl mr-2" /> Home
@@ -36,8 +42,8 @@ const Sidebar = () => {
         </Link> */}
         <Link
           to="/subscriptions"
-          onClick={() => setSelectedTab("Subscriptions")}
-          className={selectedTab === "Subscriptions" ? "bg-gray-200 rounded-lg" : ""}
+          onClick={() => setSelectedTab("/subscriptions")}
+          className={selectedTab === "/subscriptions" ? "bg-gray-200 rounded-lg" : ""}
         >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <MdOutlineSubscriptions className="text-base md:text-xl mr-2" /> Subscriptions
@@ -58,8 +64,8 @@ const Sidebar = () => {
         </p>
         <Link
           to="/watchlater"
-          onClick={() => setSelectedTab("Watch later")}
-          className={selectedTab === "Watch later" ? "bg-gray-200 rounded-lg" : ""}
+          onClick={() => setSelectedTab("/watchlater")}
+          className={selectedTab === "/watchlater" ? "bg-gray-200 rounded-lg" : ""}
         >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <GoClock className="text-base md:text-xl mr-2" /> Watch later

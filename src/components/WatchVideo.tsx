@@ -87,12 +87,12 @@ const WatchVideo = () => {
               <GrView className="mr-2 text-xl" /> 
               {useRoundNum(viewCount || '')}
             </p>
-            <p className="ml-5 flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm cursor-pointer">
+            <p className="ml-5 flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm hover:bg-gray-200 cursor-pointer">
               <BiLike className="mr-2 text-xl" />
               {useRoundNum(likeCount || '')}
             </p>
             <p
-              className={`ml-5 flex items-center px-3 py-1 rounded-full text-sm cursor-pointer ${
+              className={`ml-5 flex items-center px-3 py-1 rounded-full text-sm hover:bg-gray-200 cursor-pointer ${
                 isSaved ? "bg-gray-200" : "bg-gray-100"
               }`}
               onClick={() => setIsSaved(!isSaved)}
