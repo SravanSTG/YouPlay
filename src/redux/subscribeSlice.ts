@@ -16,9 +16,7 @@ const subscribeSlice = createSlice({
       }
     },
     removeChannel: (state, action: PayloadAction<string>) => {
-      state.subscribedChannels = state.subscribedChannels.filter(
-        (channel) => channel.id !== action.payload
-      );
+      state.subscribedChannels = state.subscribedChannels.filter((channel) => channel.id !== action.payload);
     },
   },
 });

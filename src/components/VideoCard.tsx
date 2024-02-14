@@ -22,7 +22,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ videoInfo }) => {
   return (
     <div className="w-72 mb-8">
       <Link to={"/watch?v=" + id} className="cursor-pointer">
-        <div className="relative">
+        <div id="video-thumbnail-container" className="relative overflow-hidden">
           <img
             src={thumbnails.medium.url}
             alt="video-thumb"

@@ -21,7 +21,7 @@ const SearchResultCard: React.FC<SearchResultCardProps> = ({ videoInfo }) => {
   return (
     <div className={`m-5 ${isSidebarOpen ? "md:m-5" : "md:m-12"}`}>
       <Link to={"/watch?v=" + videoId} className="cursor-pointer flex flex-col md:flex-row justify-center items-center md:justify-normal md:items-start xl:justify-center">
-        <div className="md:w-52 md:h-36 lg:w-80 lg:h-44">
+        <div id="video-thumbnail-container" className="md:w-52 md:h-36 lg:w-80 lg:h-44 overflow-hidden">
           <img
             src={thumbnails.medium.url}
             alt="video-thumb"

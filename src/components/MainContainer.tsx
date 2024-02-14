@@ -29,7 +29,7 @@ const MainContainer = () => {
     <Shimmer />
   ) : (
     <div
-      className="col-span-11 p-6 flex flex-wrap justify-evenly"
+      className="col-span-11 p-6 flex flex-wrap gap-x-5 justify-evenly"
       style={style}
     >
       {videos.map((video) => (

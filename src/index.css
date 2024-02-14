@@ -2,10 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-#list-video-card > #list-video-card-close-btn {
-    visibility: hidden;
+#list-video-card > #list-video-card-close-btn,
+#subscriber-card > #subscriber-card-close-btn {
+  visibility: hidden;
 }
 
-#list-video-card:hover > #list-video-card-close-btn {
-    visibility: visible;
+#list-video-card:hover > #list-video-card-close-btn,
+#subscriber-card:hover > #subscriber-card-close-btn {
+  visibility: visible;
+}
+
+#video-thumbnail-container img {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+}
+
+#video-thumbnail-container:hover img {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
 }
