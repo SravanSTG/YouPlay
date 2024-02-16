@@ -97,6 +97,7 @@ const Header = () => {
           <button
             className="px-2 md:px-5 h-7 md:h-[36px] bg-gray-200 hover:bg-blue-200 rounded-r-full"
             onClick={() => handleSearch(searchText)}
+            aria-label="search"
           >
             <IoSearch />
           </button>

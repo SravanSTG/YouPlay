@@ -6,10 +6,10 @@ import WatchVideo from './components/WatchVideo';
 import SearchResults from './components/SearchResults';
 import Subscriptions from './components/Subscriptions';
 import WatchLater from './components/WatchLater';
+import LikedVideos from './components/LikedVideos';
 import store from './redux/store';
 import Error from './layout/Error';
 import './index.css';
-import LikedVideos from './components/LikedVideos';
 
 const router = createBrowserRouter([
   {

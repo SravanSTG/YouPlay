@@ -1,6 +1,7 @@
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const Home = () => {
   return (
@@ -10,6 +11,13 @@ const Home = () => {
         <Sidebar />
         <Outlet />
       </div>
+      <ToastContainer
+        position="bottom-left"
+        theme="dark"
+        hideProgressBar={true}
+        pauseOnHover={false}
+        closeButton={false}
+      />
     </>
   );
 };

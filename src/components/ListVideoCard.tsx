@@ -8,6 +8,8 @@ import { LuDot } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
 import { removeFromLikedVideos } from "../redux/likedVideosSlice";
 import { removeFromWatchLater } from "../redux/watchLaterSlice";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type ListVideoCardPropsType = {
   videoInfo: VideoCardType;
@@ -30,8 +32,10 @@ const ListVideoCard: React.FC<ListVideoCardPropsType> = ({ videoInfo }) => {
   const handleRemoveButtonClick = () => {
     if (location.pathname === "/liked") {
       dispatch(removeFromLikedVideos(id));
+      toast("Removed from Liked Videos");
     } else if (location.pathname === "/watchlater") {
       dispatch(removeFromWatchLater(id));
+      toast("Removed from Watch Later");
     }
   }
 

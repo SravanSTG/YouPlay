@@ -14,6 +14,8 @@ import Channel from "./Channel";
 import CommentsList from "./CommentsList";
 import useUploadDate from "../utils/useUploadDate";
 import useRoundNum from "../utils/useRoundNum";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const WatchVideo = () => {
   const [videoDetails, setVideoDetails] = useState<VideoCardType | undefined>();
@@ -56,6 +58,7 @@ const WatchVideo = () => {
   useEffect(() => {
     if (isLiked && videoDetails) {
       dispatch(addToLikedVideos(videoDetails));
+      toast("Added to Liked Videos");
     } else if (!isLiked && id) {
       dispatch(removeFromLikedVideos(id));
     }
@@ -71,6 +74,7 @@ const WatchVideo = () => {
   useEffect(() => {
     if (isSaved && videoDetails) {
       dispatch(addToWatchLater(videoDetails));
+      toast("Saved to Watch Later");
     } else if (!isSaved && id) {
       dispatch(removeFromWatchLater(id));
     }

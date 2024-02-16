@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { GoHome, GoHistory, GoClock } from "react-icons/go";
+import { GoHome, GoClock } from "react-icons/go";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
-import { MdOutlineFeedback, MdOutlineSmartDisplay, MdOutlineSubscriptions } from "react-icons/md";
-import { TbUserSquare } from "react-icons/tb";
+import { MdOutlineFeedback, MdOutlineSubscriptions } from "react-icons/md";
 import { BiLike } from "react-icons/bi";
 // import { SiYoutubeshorts } from "react-icons/si";
 import { useSelector } from "react-redux";
@@ -52,7 +51,7 @@ const Sidebar = () => {
       </div>
 
       <div className="flex flex-col justify-start border-b-[1px] border-gray-300 py-2">
-        <h3 className="text-center md:text-left font-bold md:px-2">You</h3>
+        {/* <p className="text-center md:text-left font-bold md:px-2">You</p>
         <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
           <TbUserSquare className="text-base md:text-xl mr-2" /> Your channel
         </p>
@@ -61,7 +60,7 @@ const Sidebar = () => {
         </p>
         <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
           <MdOutlineSmartDisplay className="text-base md:text-xl mr-2" /> Your videos
-        </p>
+        </p> */}
         <Link
           to="/watchlater"
           onClick={() => setSelectedTab("/watchlater")}
