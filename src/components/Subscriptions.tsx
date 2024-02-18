@@ -5,7 +5,6 @@ import ChannelCard from "./ChannelCard";
 
 const Subscriptions = () => {
   const subscribedChannels = useSelector((store: RootState) => store.subscribe.subscribedChannels);
-  console.log(subscribedChannels);
 
   const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
 

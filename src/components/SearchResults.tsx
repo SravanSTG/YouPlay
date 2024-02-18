@@ -27,8 +27,8 @@ const SearchResults = () => {
       }`
     );
     const json = await data.json();
-    console.log(json.items);
     setSearchResultsList(json.items);
+    // console.log(json.items);
   };
 
   return (

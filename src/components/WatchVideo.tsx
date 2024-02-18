@@ -86,7 +86,7 @@ const WatchVideo = () => {
     );
     const json = await data.json();
     setVideoDetails(json.items[0]);
-    console.log(json.items[0]);
+    // console.log(json.items[0]);
   };
 
   return (

@@ -4,7 +4,6 @@ import ListVideoCard from "./ListVideoCard";
 
 const WatchLater = () => {
   const watchLaterVideos = useSelector((store: RootState) => store.watchLater.watchLaterVideos);
-  console.log(watchLaterVideos);
 
   const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
 

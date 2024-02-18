@@ -3,10 +3,7 @@ import { RootState } from "../redux/store";
 import ListVideoCard from "./ListVideoCard";
 
 const LikedVideos = () => {
-  const likedVideosList = useSelector(
-    (store: RootState) => store.likedVideos.likedVideos
-  );
-  console.log(likedVideosList);
+  const likedVideosList = useSelector((store: RootState) => store.likedVideos.likedVideos);
 
   const isSidebarOpen = useSelector(
     (store: RootState) => store.sidebar.isMenuOpen

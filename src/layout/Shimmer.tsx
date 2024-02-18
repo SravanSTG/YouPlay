@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import { ShimmerThumbnail, ShimmerBadge } from "react-shimmer-effects";
 
 const Shimmer = () => {
   const renderVideoCards = () => {
@@ -9,9 +8,10 @@ const Shimmer = () => {
     for (let i = 0; i < numberOfCards; i++) {
       videoCards.push(
         <div key={i} className="mb-8">
-          <ShimmerThumbnail height={200} width={288} rounded className="mb-3" />
-          <ShimmerBadge width={288} className="mb-2" />
-          <ShimmerBadge width={288} className="mb-2" />
+          <div className="h-40 w-72 rounded-lg bg-gray-100"></div>
+          <p className="mt-3 bg-gray-100 h-5 rounded-full"></p>
+          <p className="mt-3 bg-gray-100 h-5 rounded-full"></p>
+          <p className="mt-3 bg-gray-100 h-5 rounded-full"></p>
         </div>
       );
     }
@@ -21,7 +21,7 @@ const Shimmer = () => {
 
   return (
     <div className="col-span-11 p-6">
-      <div className="flex flex-wrap justify-evenly">{renderVideoCards()}</div>
+      <div className="flex flex-wrap gap-x-5 justify-evenly">{renderVideoCards()}</div>
     </div>
   );
 };
