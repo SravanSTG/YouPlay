@@ -23,3 +23,11 @@
   transform: scale(1.2);
   -webkit-transform: scale(1.2);
 }
+
+#profile-icon + #profile-card {
+  display: none;
+}
+
+#profile-icon:hover + #profile-card {
+  display: block;
+}

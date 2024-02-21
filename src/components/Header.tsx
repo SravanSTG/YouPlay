@@ -117,8 +117,20 @@ const Header = () => {
           </div>
         )}
       </div>
-      <div>
-        <FaUserCircle className="text-2xl md:text-3xl" />
+      <div className="relative">
+        <FaUserCircle id="profile-icon" className="text-2xl md:text-3xl" />
+        <div
+          id="profile-card"
+          className="absolute -left-[150px] top-1 bg-white z-10 p-4 shadow-2xl rounded-lg border border-gray-200"
+        >
+          <div className="flex">
+            <FaUserCircle className="text-2xl md:text-3xl mr-3" />
+            <div className="flex flex-col">
+              <p className="font-semibold">Guest</p>
+              <p className="text-sm">@guest123</p>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   );
