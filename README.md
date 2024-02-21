@@ -29,7 +29,9 @@ To use it, you need to set up a Youtube Data API key.
 ### Provide the API key to the application using Environment Variables
 Create a `.env` file in the root of the project. <br/>
 Then define the `VITE_API_KEY` environment variable with your Youtube API key. <br />
-`VITE_API_KEY=AIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+```
+VITE_API_KEY=AIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
 
 ### Install dependencies
 To install the dependencies, run:
