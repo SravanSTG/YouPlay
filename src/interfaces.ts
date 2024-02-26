@@ -88,3 +88,10 @@ export interface ChannelType {
     videoCount: string;
   };
 }
+
+export interface CategoryType {
+  id: string;
+  snippet: {
+    title: string;
+  }
+}

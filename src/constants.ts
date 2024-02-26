@@ -15,3 +15,9 @@ export const videoCommentsUrl =
 
 export const channelInfoUrl =
   "https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=";
+
+export const allVideoCategoriesUrl =
+  "https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&hl=en&regionCode=US&key="
+
+export const categoryVideosUrl =
+  "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=48&videoCategoryId="

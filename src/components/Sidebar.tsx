@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { GoHome, GoClock } from "react-icons/go";
+import { GoHome, GoClock, GoTrophy, GoLightBulb } from "react-icons/go";
 import { IoIosHelpCircleOutline } from "react-icons/io";
-import { IoSettingsOutline } from "react-icons/io5";
-import { MdOutlineFeedback, MdOutlineSubscriptions } from "react-icons/md";
+import { IoGameControllerOutline, IoSettingsOutline } from "react-icons/io5";
+import { MdNewspaper, MdOutlineFeedback, MdOutlineScience, MdOutlineSubscriptions } from "react-icons/md";
 import { BiLike } from "react-icons/bi";
+import { PiFilmSlate, PiMusicNote } from "react-icons/pi";
 // import { SiYoutubeshorts } from "react-icons/si";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
@@ -77,6 +78,45 @@ const Sidebar = () => {
         >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <BiLike className="text-base md:text-xl mr-2" /> Liked videos
+          </p>
+        </Link>
+      </div>
+
+      <div className="flex flex-col justify-start border-b-[1px] border-gray-300 py-2">
+        <p className="text-center md:text-left font-bold md:px-2 mb-1">Explore</p>
+        <Link to="/feed/films">
+          <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+            <PiFilmSlate className="text-base md:text-xl mr-2" /> Films
+          </p>
+        </Link>
+        <Link to="/feed/music">
+          <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+            <PiMusicNote className="text-base md:text-xl mr-2" /> Music
+          </p>
+        </Link>
+        <Link to="feed/sports">
+          <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+            <GoTrophy className="text-base md:text-xl mr-2" /> Sports
+          </p>
+        </Link>
+        <Link to="feed/gaming">
+          <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+            <IoGameControllerOutline className="text-base md:text-xl mr-2" /> Gaming
+          </p>
+        </Link>
+        <Link to="feed/news">
+          <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+            <MdNewspaper className="text-base md:text-xl mr-2" /> News
+          </p>
+        </Link>
+        <Link to="feed/education">
+          <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+            <GoLightBulb className="text-base md:text-xl mr-2" /> Education
+          </p>
+        </Link>
+        <Link to="feed/science">
+          <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
+            <MdOutlineScience className="text-base md:text-xl mr-2" /> Science
           </p>
         </Link>
       </div>

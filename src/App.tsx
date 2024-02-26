@@ -7,6 +7,7 @@ import SearchResults from './components/SearchResults';
 import Subscriptions from './components/Subscriptions';
 import WatchLater from './components/WatchLater';
 import LikedVideos from './components/LikedVideos';
+import Category from './components/Category';
 import store from './redux/store';
 import Error from './layout/Error';
 import './index.css';
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "liked",
         element: <LikedVideos />
+      },
+      {
+        path: "feed/:category",
+        element: <Category />
       }
     ]
   }
