@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { youtubeVideosUrl } from "../constants";
-import VideoCard from "./VideoCard";
-import { VideoCardType } from "../interfaces";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { closeSidebarMenu } from "../redux/sidebarSlice";
+import { youtubeVideosUrl } from "../constants";
+import { VideoCardType } from "../interfaces";
+import VideoCard from "./VideoCard";
 import Shimmer from "../layout/Shimmer";
 
 const MainContainer = () => {
@@ -15,8 +16,14 @@ const MainContainer = () => {
     display: window.innerWidth < 640 && isSidebarOpen ? "none" : "flex",
   };
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     getVideos();
+
+    if (window.innerWidth < 840) {
+      dispatch(closeSidebarMenu());
+    }
   }, []);
 
   const getVideos = async () => {

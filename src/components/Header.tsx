@@ -95,7 +95,7 @@ const Header = () => {
             className="border-solid border-gray-300 border-2 px-3 py-2 h-7 md:h-[36px] w-32 focus:w-full md:w-80 md:focus:w-80 rounded-l-full text-xs md:text-sm"
           />
           <button
-            className="px-2 md:px-5 h-7 md:h-[36px] bg-gray-200 hover:bg-blue-200 rounded-r-full"
+            className="px-2 md:px-5 h-7 md:h-[36px] z-10 bg-gray-200 hover:bg-blue-200 rounded-r-full"
             onClick={() => handleSearch(searchText)}
             aria-label="search"
           >

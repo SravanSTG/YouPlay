@@ -5,9 +5,7 @@ import ListVideoCard from "./ListVideoCard";
 const LikedVideos = () => {
   const likedVideosList = useSelector((store: RootState) => store.likedVideos.likedVideos);
 
-  const isSidebarOpen = useSelector(
-    (store: RootState) => store.sidebar.isMenuOpen
-  );
+  const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
 
   const style = {
     display: window.innerWidth < 640 && isSidebarOpen ? "none" : "block",

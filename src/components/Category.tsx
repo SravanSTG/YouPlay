@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 import { CategoryType, SearchVideoCardType } from "../interfaces";
 import { allVideoCategoriesUrl, categoryVideosUrl } from "../constants";
 import SearchResultCard from "./SearchResultCard";
@@ -10,6 +12,12 @@ const Category = () => {
   const [categoryVideos, setCategoryVideos] = useState<SearchVideoCardType[]>([]);
 
   const { category } = useParams();
+
+  const isSidebarOpen = useSelector((store: RootState) => store.sidebar.isMenuOpen);
+
+  const style = {
+    display: window.innerWidth < 640 && isSidebarOpen ? "none" : "block",
+  };
 
   useEffect(() => {
     getAllCategories();
@@ -46,7 +54,7 @@ const Category = () => {
   };
 
   return (
-    <div className="col-span-11">
+    <div className="col-span-11" style={style}>
       {categoryVideos &&
         categoryVideos.map((video) => (
           <SearchResultCard key={video.id.videoId} videoInfo={video} />
