@@ -1,15 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { CategoryType } from "../interfaces";
+import { CategoryType, SearchVideoCardType } from "../interfaces";
 import { allVideoCategoriesUrl, categoryVideosUrl } from "../constants";
+import SearchResultCard from "./SearchResultCard";
 
 const Category = () => {
   const [videoCategoriesList, setVideoCategoriesList] = useState<CategoryType[]>([]);
-  const [categoryId, setCategoryId] = useState<string>("we");
-  
+  const [categoryId, setCategoryId] = useState<string>("");
+  const [categoryVideos, setCategoryVideos] = useState<SearchVideoCardType[]>([]);
+
   const { category } = useParams();
-  // console.log(category, categoryId);
-  
+
   useEffect(() => {
     getAllCategories();
   }, []);
@@ -19,7 +20,9 @@ const Category = () => {
   }, [category, videoCategoriesList]);
 
   useEffect(() => {
-    getVideosFromCategory();
+    if (categoryId) {
+      getVideosFromCategory();
+    }
   }, [categoryId]);
 
   const getAllCategories = async () => {
@@ -39,10 +42,17 @@ const Category = () => {
   const getVideosFromCategory = async () => {
     const data = await fetch(`${categoryVideosUrl}${categoryId}&key=${import.meta.env.VITE_API_KEY}`);
     const json = await data.json();
-    console.log(json);
-  }
+    setCategoryVideos(json.items);
+  };
 
-  return <div className="col-span-11">Category</div>;
+  return (
+    <div className="col-span-11">
+      {categoryVideos &&
+        categoryVideos.map((video) => (
+          <SearchResultCard key={video.id.videoId} videoInfo={video} />
+        ))}
+    </div>
+  );
 };
 
 export default Category;

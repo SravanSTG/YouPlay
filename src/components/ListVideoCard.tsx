@@ -4,6 +4,7 @@ import { VideoCardType } from "../interfaces";
 import useDuration from "../utils/useDuration";
 import useUploadDate from "../utils/useUploadDate";
 import useRoundNum from "../utils/useRoundNum";
+import useTextDecode from "../utils/useTextDecode";
 import { LuDot } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
 import { removeFromLikedVideos } from "../redux/likedVideosSlice";
@@ -24,6 +25,7 @@ const ListVideoCard: React.FC<ListVideoCardPropsType> = ({ videoInfo }) => {
 
   const vidDuration = useDuration(duration);
   const uploadDate = useUploadDate(publishedAt);
+  const videoTitle = useTextDecode(title);
 
   const dispatch = useDispatch();
 
@@ -57,7 +59,7 @@ const ListVideoCard: React.FC<ListVideoCardPropsType> = ({ videoInfo }) => {
           </p>
         </div>
         <div className="px-[6px] md:px-2 flex-grow">
-          <h2 className="font-bold text-sm lg:text-base">{title}</h2>
+          <h2 className="font-bold text-sm lg:text-base">{videoTitle}</h2>
           <h3 className="text-xs md:text-sm font-semibold text-gray-500">
             {channelTitle}
           </h3>

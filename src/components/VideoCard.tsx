@@ -3,6 +3,7 @@ import { VideoCardType } from "../interfaces";
 import useDuration from "../utils/useDuration";
 import useUploadDate from "../utils/useUploadDate";
 import useRoundNum from "../utils/useRoundNum";
+import useTextDecode from "../utils/useTextDecode";
 import { LuDot } from "react-icons/lu";
 
 type VideoCardProps = {
@@ -18,6 +19,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ videoInfo }) => {
 
   const vidDuration = useDuration(duration);
   const uploadDate = useUploadDate(publishedAt);
+  const videoTitle = useTextDecode(title);
 
   return (
     <div className="w-72 mb-8">
@@ -33,7 +35,7 @@ const VideoCard: React.FC<VideoCardProps> = ({ videoInfo }) => {
           </p>
         </div>
         <div className="px-[6px]">
-          <h2 className="font-bold text-base mt-[6px]">{title}</h2>
+          <h2 className="font-bold text-base mt-[6px]">{videoTitle}</h2>
           <h3 className="text-sm mb-[2px] font-semibold text-gray-500">
             {channelTitle}
           </h3>

@@ -84,39 +84,67 @@ const Sidebar = () => {
 
       <div className="flex flex-col justify-start border-b-[1px] border-gray-300 py-2">
         <p className="text-center md:text-left font-bold md:px-2 mb-1">Explore</p>
-        <Link to="/feed/films">
+        <Link
+          to="/feed/film"
+          onClick={() => setSelectedTab("/feed/film")}
+          className={selectedTab === "/feed/film" ? "bg-gray-200 rounded-lg" : ""}
+        >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <PiFilmSlate className="text-base md:text-xl mr-2" /> Films
           </p>
         </Link>
-        <Link to="/feed/music">
+        <Link
+          to="/feed/music"
+          onClick={() => setSelectedTab("/feed/music")}
+          className={selectedTab === "/feed/music" ? "bg-gray-200 rounded-lg" : ""}
+        >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <PiMusicNote className="text-base md:text-xl mr-2" /> Music
           </p>
         </Link>
-        <Link to="feed/sports">
+        <Link
+          to="feed/sports"
+          onClick={() => setSelectedTab("/feed/sports")}
+          className={selectedTab === "/feed/sports" ? "bg-gray-200 rounded-lg" : ""}
+        >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <GoTrophy className="text-base md:text-xl mr-2" /> Sports
           </p>
         </Link>
-        <Link to="feed/gaming">
+        <Link
+          to="feed/gaming"
+          onClick={() => setSelectedTab("/feed/gaming")}
+          className={selectedTab === "/feed/gaming" ? "bg-gray-200 rounded-lg" : ""}
+        >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <IoGameControllerOutline className="text-base md:text-xl mr-2" /> Gaming
           </p>
         </Link>
-        <Link to="feed/news">
+        <Link
+          to="feed/news"
+          onClick={() => setSelectedTab("/feed/news")}
+          className={selectedTab === "/feed/news" ? "bg-gray-200 rounded-lg" : ""}
+        >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <MdNewspaper className="text-base md:text-xl mr-2" /> News
           </p>
         </Link>
-        <Link to="feed/education">
+        <Link
+          to="feed/education"
+          onClick={() => setSelectedTab("/feed/education")}
+          className={selectedTab === "/feed/education" ? "bg-gray-200 rounded-lg" : ""}
+        >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
             <GoLightBulb className="text-base md:text-xl mr-2" /> Education
           </p>
         </Link>
-        <Link to="feed/science">
+        <Link
+          to="feed/science"
+          onClick={() => setSelectedTab("/feed/science")}
+          className={selectedTab === "/feed/science" ? "bg-gray-200 rounded-lg" : ""}
+        >
           <p className="flex items-center justify-center md:justify-start py-2 md:px-2 text-sm md:text-base cursor-pointer hover:bg-blue-200 hover:rounded-lg">
-            <MdOutlineScience className="text-base md:text-xl mr-2" /> Science
+            <MdOutlineScience className="text-base md:text-xl mr-2" /> Science & Tech
           </p>
         </Link>
       </div>

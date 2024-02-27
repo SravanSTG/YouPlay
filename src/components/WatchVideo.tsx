@@ -14,6 +14,7 @@ import Channel from "./Channel";
 import CommentsList from "./CommentsList";
 import useUploadDate from "../utils/useUploadDate";
 import useRoundNum from "../utils/useRoundNum";
+import useTextDecode from "../utils/useTextDecode";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -36,6 +37,7 @@ const WatchVideo = () => {
   const likedVideos = useSelector((store: RootState) => store.likedVideos.likedVideos);
 
   const uploadDate = useUploadDate(publishedAt!);
+  const videoTitle = useTextDecode(title!);
 
   const style = {
     display: window.innerWidth < 640 && isSidebarOpen ? "none" : "flex",
@@ -103,7 +105,7 @@ const WatchVideo = () => {
         ></iframe>
       </div>
       <div className="my-3 xl:w-[900px]">
-        <h2 className="font-bold text-xl">{title}</h2>
+        <h2 className="font-bold text-xl">{videoTitle}</h2>
         <div className="flex flex-col md:flex-row items-start md:items-center my-3">
           {channelId && <Channel channelId={channelId} />}
           <div className="flex mt-3 md:mt-0 md:ml-auto">
