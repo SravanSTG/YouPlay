@@ -6,7 +6,9 @@ This project was created using [Vite](https://vitejs.dev/guide/).
 
 Live URL: [YouPlay](https://youplay-v1.netlify.app/)
 
-![YouPlay1](https://github.com/SravanSTG/YouPlay/assets/53626426/c1d1276a-f754-470a-8b47-f0a4a54a8adf)
+<br />
+
+![Annotation 2024-03-08 132621](https://github.com/SravanSTG/YouPlay/assets/53626426/fd6130d0-91f7-4dc1-bfc6-5d894183dd40)
 
 <br />
 
@@ -49,7 +51,7 @@ npm start
 
 - Home feed with most Popular videos
 - Search vidoes with debouncing effect
-- Watch videos
+- Browse and watch videos
 - Get video details (title, channel name, views, likes, channel subscriptions, video description)
 - View comments and replies for a video
 - Subscribe/Unsubscribe from channels
@@ -69,4 +71,6 @@ npm start
 - React Toastify
 - React Icons
 - Custom Hooks
-- Vite
+
+## Note
+If the application does not load anything, or if the search function does not work, most likely the daily Youtube API quota has been exceeded. Please wait for sometime and try again.
