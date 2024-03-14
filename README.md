@@ -1,6 +1,6 @@
 # YouPlay
 
-A YouTube clone built using React, Redux Toolkit, TypeScript and Tailwind CSS. Users can explore a dynamic homepage, utilize a robust search feature with debouncing, browse and watch videos, view comments, manage subscriptions, personalize liked videos and watch later lists.
+A highly performant video streaming platform built using React, Redux Toolkit, TypeScript and Tailwind CSS. Users can explore a dynamic homepage, utilize a robust search feature with debouncing, browse and watch videos, view comments, manage subscriptions, personalize liked videos and watch later lists.
 
 This project was created using [Vite](https://vitejs.dev/guide/).
 
