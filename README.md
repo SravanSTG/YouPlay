@@ -50,7 +50,7 @@ npm start
 ## Features
 
 - Home feed with most Popular videos
-- Search vidoes with debouncing effect
+- Search videos with debouncing effect
 - Browse and watch videos
 - Get video details (title, channel name, views, likes, channel subscriptions, video description)
 - View comments and replies for a video
